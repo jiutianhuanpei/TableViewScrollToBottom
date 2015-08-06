@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A5D42258-272D-4013-8C5E-791395E6FA5B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Keyboard_inputView_Demo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F7FDAACCC332853F2881E89A060D2DF6C349A9F1</key>
+		<string>https://github.com/jiutianhuanpei/TableViewScrollToBottom.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Keyboard_inputView_Demo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F7FDAACCC332853F2881E89A060D2DF6C349A9F1</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/jiutianhuanpei/TableViewScrollToBottom.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F7FDAACCC332853F2881E89A060D2DF6C349A9F1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F7FDAACCC332853F2881E89A060D2DF6C349A9F1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Keyboard_inputView_Demo</string>
+		</dict>
+	</array>
+</dict>
+</plist>

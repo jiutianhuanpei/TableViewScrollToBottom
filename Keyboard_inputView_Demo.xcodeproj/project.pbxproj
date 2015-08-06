@@ -11,10 +11,12 @@
 		4D705E881B71FFD900FA72BD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D705E871B71FFD900FA72BD /* AppDelegate.m */; };
 		4D705E8B1B71FFD900FA72BD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D705E8A1B71FFD900FA72BD /* ViewController.m */; };
 		4D705E8E1B71FFD900FA72BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D705E8C1B71FFD900FA72BD /* Main.storyboard */; };
-		4D705E901B71FFD900FA72BD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D705E8F1B71FFD900FA72BD /* Images.xcassets */; };
 		4D705E931B71FFD900FA72BD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D705E911B71FFD900FA72BD /* LaunchScreen.xib */; };
 		4D705E9F1B71FFD900FA72BD /* Keyboard_inputView_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D705E9E1B71FFD900FA72BD /* Keyboard_inputView_DemoTests.m */; };
 		4D705EAA1B721B1B00FA72BD /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D705EA91B721B1B00FA72BD /* TableViewCell.m */; };
+		4D705EAD1B721F1200FA72BD /* SHBMessageInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D705EAC1B721F1200FA72BD /* SHBMessageInputView.m */; };
+		4DA84F971B72F69200040FEC /* UIColor+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DA84F961B72F69200040FEC /* UIColor+Theme.m */; };
+		4DA852A51B736C9900040FEC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DA852A41B736C9900040FEC /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,13 +38,17 @@
 		4D705E891B71FFD900FA72BD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4D705E8A1B71FFD900FA72BD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4D705E8D1B71FFD900FA72BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4D705E8F1B71FFD900FA72BD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4D705E921B71FFD900FA72BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4D705E981B71FFD900FA72BD /* Keyboard_inputView_DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Keyboard_inputView_DemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D705E9D1B71FFD900FA72BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D705E9E1B71FFD900FA72BD /* Keyboard_inputView_DemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Keyboard_inputView_DemoTests.m; sourceTree = "<group>"; };
 		4D705EA81B721B1B00FA72BD /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		4D705EA91B721B1B00FA72BD /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		4D705EAB1B721F1200FA72BD /* SHBMessageInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHBMessageInputView.h; sourceTree = "<group>"; };
+		4D705EAC1B721F1200FA72BD /* SHBMessageInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHBMessageInputView.m; sourceTree = "<group>"; };
+		4DA84F951B72F69200040FEC /* UIColor+Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Theme.h"; sourceTree = "<group>"; };
+		4DA84F961B72F69200040FEC /* UIColor+Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Theme.m"; sourceTree = "<group>"; };
+		4DA852A41B736C9900040FEC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,15 +90,19 @@
 		4D705E811B71FFD900FA72BD /* Keyboard_inputView_Demo */ = {
 			isa = PBXGroup;
 			children = (
+				4DA84F951B72F69200040FEC /* UIColor+Theme.h */,
+				4DA84F961B72F69200040FEC /* UIColor+Theme.m */,
 				4D705E861B71FFD900FA72BD /* AppDelegate.h */,
 				4D705E871B71FFD900FA72BD /* AppDelegate.m */,
 				4D705E891B71FFD900FA72BD /* ViewController.h */,
 				4D705E8A1B71FFD900FA72BD /* ViewController.m */,
+				4D705EAB1B721F1200FA72BD /* SHBMessageInputView.h */,
+				4D705EAC1B721F1200FA72BD /* SHBMessageInputView.m */,
 				4D705EA81B721B1B00FA72BD /* TableViewCell.h */,
 				4D705EA91B721B1B00FA72BD /* TableViewCell.m */,
 				4D705E8C1B71FFD900FA72BD /* Main.storyboard */,
-				4D705E8F1B71FFD900FA72BD /* Images.xcassets */,
 				4D705E911B71FFD900FA72BD /* LaunchScreen.xib */,
+				4DA852A41B736C9900040FEC /* Images.xcassets */,
 				4D705E821B71FFD900FA72BD /* Supporting Files */,
 			);
 			path = Keyboard_inputView_Demo;
@@ -204,9 +214,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DA852A51B736C9900040FEC /* Images.xcassets in Resources */,
 				4D705E8E1B71FFD900FA72BD /* Main.storyboard in Resources */,
 				4D705E931B71FFD900FA72BD /* LaunchScreen.xib in Resources */,
-				4D705E901B71FFD900FA72BD /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +238,8 @@
 				4D705EAA1B721B1B00FA72BD /* TableViewCell.m in Sources */,
 				4D705E881B71FFD900FA72BD /* AppDelegate.m in Sources */,
 				4D705E851B71FFD900FA72BD /* main.m in Sources */,
+				4D705EAD1B721F1200FA72BD /* SHBMessageInputView.m in Sources */,
+				4DA84F971B72F69200040FEC /* UIColor+Theme.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +365,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Keyboard_inputView_Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -363,6 +376,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Keyboard_inputView_Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -422,6 +436,7 @@
 				4D705EA41B71FFD900FA72BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4D705EA51B71FFD900FA72BD /* Build configuration list for PBXNativeTarget "Keyboard_inputView_DemoTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +445,7 @@
 				4D705EA71B71FFD900FA72BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

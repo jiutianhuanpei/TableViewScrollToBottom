@@ -19,6 +19,7 @@
         
         _title = [[UILabel alloc] initWithFrame:CGRectZero];
         _title.translatesAutoresizingMaskIntoConstraints = false;
+        _title.numberOfLines = 0;
         [self addSubview:_title];
         
         _line = [[UIView alloc] initWithFrame:CGRectZero];
@@ -27,7 +28,7 @@
         [self addSubview:_line];
         
         NSDictionary *views = NSDictionaryOfVariableBindings(_title, _line);
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-10-[_title]" options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-10-[_title]-10-|" options:0 metrics:nil views:views]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[_line]|" options:0 metrics:nil views:views]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_title]-[_line(3)]|" options:0 metrics:nil views:views]];
         
