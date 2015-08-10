@@ -58,8 +58,6 @@
     [self.view bringSubviewToFront:_reBtn];
     [self.view insertSubview:_inputView belowSubview:_reBtn];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
     [self.tableView registerClass:[TableViewCell class] forCellReuseIdentifier:NSStringFromClass([TableViewCell class])];
@@ -83,7 +81,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [_heghts[indexPath.row] integerValue];
+    return [TableViewCell height:(NSString *)_dataArray[indexPath.row]];
+//    return [_heghts[indexPath.row] integerValue];
 }
 
 
@@ -104,7 +103,9 @@
 #pragma mark - SHBMessageInputViewDelegate
 - (void)sendMessage:(NSString *)message {
     [_dataArray addObject:message];
-    [_heghts addObject:[NSString stringWithFormat:@"%d", arc4random() % 100 + 40]];
+    CGSize contentSize = [message sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14]}];
+    
+    [_heghts addObject:[NSString stringWithFormat:@"%f", contentSize.height + 20]];
     __weak typeof(self) SHB = self;
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
         [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:_dataArray.count - 1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];

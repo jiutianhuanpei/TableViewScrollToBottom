@@ -19,7 +19,7 @@ static  NSString *const addKeychain = @"addKeyChain";
 static NSString *const takePhoto = @"takePhoto";
 static NSString *const choosePhoto = @"choosePhoto";
 
-@interface SHBMessageInputView ()<UITextFieldDelegate>
+@interface SHBMessageInputView ()<UITextFieldDelegate, UITextViewDelegate>
 
 @end
 
@@ -33,13 +33,16 @@ static NSString *const choosePhoto = @"choosePhoto";
     UIButton    *_leftBtn;
     UIButton    *_rightBtn;
     
-    UITextField *_inputField;
+//    UITextField *_inputField;
+    UITextView  *_inputTextView;
     UIButton    *_audioBt;
     
     BOOL        _first;
     
     UIButton    *_choosePhotoBtn;
     UIButton    *_takePhotoBtn;
+    
+    void(^inputTextToNil)();
     
 }
 
@@ -80,15 +83,29 @@ static NSString *const choosePhoto = @"choosePhoto";
         [_rightBtn addTarget:self action:@selector(unfold:) forControlEvents:UIControlEventTouchUpInside];
         [_inputView addSubview:_rightBtn];
         
-        _inputField = [[UITextField alloc] initWithFrame:CGRectZero];
-        _inputField.placeholder = @"请输入...";
-        _inputField.backgroundColor = [UIColor whiteColor];
-        _inputField.font = [UIFont systemFontOfSize:14];
-        _inputField.layer.cornerRadius = 2;
-        _inputField.layer.masksToBounds = YES;
-        _inputField.delegate = self;
-        _inputField.returnKeyType = UIReturnKeySend;
-        [_inputView addSubview:_inputField];
+        //  输入栏
+        
+//        _inputField = [[UITextField alloc] initWithFrame:CGRectZero];
+//        _inputField.placeholder = @"请输入...";
+//        _inputField.backgroundColor = [UIColor whiteColor];
+//        _inputField.font = [UIFont systemFontOfSize:14];
+//        _inputField.layer.cornerRadius = 2;
+//        _inputField.layer.masksToBounds = YES;
+//        _inputField.delegate = self;
+//        _inputField.returnKeyType = UIReturnKeySend;
+//        [_inputView addSubview:_inputField];
+        
+        _inputTextView = [[UITextView alloc] initWithFrame:CGRectZero];
+        _inputTextView.backgroundColor = [UIColor whiteColor];
+        _inputTextView.font = [UIFont systemFontOfSize:14];
+        _inputTextView.layer.cornerRadius = 2;
+        _inputTextView.layer.masksToBounds = true;
+        _inputTextView.delegate = self;
+        _inputTextView.returnKeyType = UIReturnKeySend;
+        [_inputView addSubview:_inputTextView];
+        
+        
+        
         
         _audioBt = [[UIButton alloc]initWithFrame:CGRectZero];
         [_audioBt setTitle:@"按住说话" forState:UIControlStateNormal];
@@ -122,8 +139,14 @@ static NSString *const choosePhoto = @"choosePhoto";
         
         _firstLine.frame = CGRectMake(0, 0, width, lineH);
         _inputView.frame = CGRectMake(0, lineH, width, 50);
-        _inputField.frame = CGRectMake(leftBtnW + space, 10, width - leftBtnW - space - rightBtnW - space, 30);
-        _audioBt.frame = _inputField.frame;
+        
+
+//        _inputField.frame = CGRectMake(leftBtnW + space, 10, width - leftBtnW - space - rightBtnW - space, 30);
+//        _audioBt.frame = _inputField.frame;
+        
+        _inputTextView.frame = CGRectMake(leftBtnW + space, 10, width - leftBtnW - space - rightBtnW - space, 30);
+        _audioBt.frame = _inputTextView.frame;
+        
         _leftBtn.frame = CGRectMake(0, 0, leftBtnW, 50);
         _rightBtn.frame = CGRectMake(width - rightBtnW, 0, rightBtnW, 50);
         _secondLine.frame = CGRectMake(0, CGRectGetMaxY(_inputView.frame), width, lineH);
@@ -133,6 +156,7 @@ static NSString *const choosePhoto = @"choosePhoto";
         _takePhotoBtn.frame = CGRectMake(CGRectGetMaxX(_choosePhotoBtn.frame) + 20, CGRectGetMinY(_choosePhotoBtn.frame), photoW, photoW);
         
         [self addObserver];
+        
         
     }
     return self;
@@ -187,10 +211,12 @@ static NSString *const choosePhoto = @"choosePhoto";
 - (void)leftBtn:(UIButton *)btn {
     if (_audioBt.superview) {
         [_audioBt removeFromSuperview];
-        [_inputView addSubview:_inputField];
+//        [_inputView addSubview:_inputField];
+        [_inputView addSubview:_inputTextView];
         [_leftBtn setImage:[UIImage imageNamed:yuyin] forState:UIControlStateNormal];
     } else {
-        [_inputField removeFromSuperview];
+//        [_inputField removeFromSuperview];
+        [_inputTextView removeFromSuperview];
         [_inputView addSubview:_audioBt];
         [_leftBtn setImage:[UIImage imageNamed:keyboard] forState:UIControlStateNormal];
     }
@@ -205,25 +231,8 @@ static NSString *const choosePhoto = @"choosePhoto";
     
 }
 
-- (void)unfold:(UIButton *)btn {
-    UIView *superView = self.superview;
-    CGFloat width = self.frame.size.width;
-    [UIView animateWithDuration:0.25 animations:^{
-        if (_contentView.frame.size.height) {
-            _contentView.frame = CGRectMake(0, CGRectGetMaxY(_secondLine.frame), width, 0);
-            self.frame = CGRectMake(0, CGRectGetHeight(superView.frame) - inputBarH, CGRectGetWidth(superView.frame), inputBarH);
-            _state = SHBInputBottom;
-        } else {
-            [_inputField resignFirstResponder];
-            _contentView.frame = CGRectMake(0, CGRectGetMaxY(_secondLine.frame), width, inputContentH);
-            self.frame = CGRectMake(0, CGRectGetHeight(superView.frame) - inputBarH - inputContentH, CGRectGetWidth(superView.frame), inputBarH + inputContentH);
-            _state = SHBInputUnfold;
-        }
-        [superView layoutIfNeeded];
-        
-    }];
-}
 
+#pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     if ([_delegate respondsToSelector:@selector(textFieldShouldReturn:)]) {
@@ -240,6 +249,65 @@ static NSString *const choosePhoto = @"choosePhoto";
     return YES;
 }
 
+#pragma mark - UITextViewDelegate
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+
+    CGRect frame = _inputTextView.frame;
+    frame.size.height = [textView.text boundingRectWithSize:CGSizeMake(_inputTextView.frame.size.width, 0) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : _inputTextView.font} context:nil].size.height;
+    if (frame.size.height < 30) {
+        frame.size.height = 30;
+        return true;
+    }
+    _inputTextView.frame = frame;
+    _inputView.frame = CGRectMake(0, 0, CGRectGetWidth(_inputView.frame), _inputTextView.contentSize.height + 20);
+    
+    UIView *superView = self.superview;
+    [superView layoutIfNeeded];
+    NSLog(@"%s", __FUNCTION__);
+    return true;
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    NSLog(@"%s", __FUNCTION__);
+
+    if ([textView.text hasSuffix:@"\n"] && [_delegate respondsToSelector:@selector(sendMessage:)]) {
+        [_delegate sendMessage:[textView.text stringByReplacingOccurrencesOfString:@"\n" withString:@""]];
+        _inputTextView.text = nil;
+    }
+}
+
+- (void)textViewDidChangeSelection:(UITextView *)textView {
+    NSLog(@"%s", __FUNCTION__);
+}
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
+    NSLog(@"%s", __FUNCTION__);
+    return true;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange {
+    NSLog(@"%s", __FUNCTION__);
+    return true;
+}
+
+- (void)unfold:(UIButton *)btn {
+    UIView *superView = self.superview;
+    CGFloat width = self.frame.size.width;
+    [UIView animateWithDuration:0.25 animations:^{
+        if (_contentView.frame.size.height) {
+            _contentView.frame = CGRectMake(0, CGRectGetMaxY(_secondLine.frame), width, 0);
+            self.frame = CGRectMake(0, CGRectGetHeight(superView.frame) - inputBarH, CGRectGetWidth(superView.frame), inputBarH);
+            _state = SHBInputBottom;
+        } else {
+            [_inputTextView resignFirstResponder];
+            _contentView.frame = CGRectMake(0, CGRectGetMaxY(_secondLine.frame), width, inputContentH);
+            self.frame = CGRectMake(0, CGRectGetHeight(superView.frame) - inputBarH - inputContentH, CGRectGetWidth(superView.frame), inputBarH + inputContentH);
+            _state = SHBInputUnfold;
+        }
+        [superView layoutIfNeeded];
+    }];
+}
 
 - (void)layoutSubviews {
     UIView *superView = self.superview;
@@ -247,8 +315,17 @@ static NSString *const choosePhoto = @"choosePhoto";
         self.frame = CGRectMake(0, CGRectGetHeight(superView.frame) - inputBarH, CGRectGetWidth(superView.frame), inputBarH);
         _first = false;
     }
+//    else {
+//        self.frame = CGRectMake(0, CGRectGetHeight(superView.frame) - _inputView.frame.size.height, CGRectGetWidth(superView.frame), _inputView.frame.size.height);
+//        
+//    }
     [superView layoutIfNeeded];
-    
+}
+
+- (CGRect)changeMinYTo:(CGFloat)MinY withFrame:(CGRect)frame {
+    CGRect rect = frame;
+    rect.origin.y = MinY;
+    return rect;
 }
 
 - (CGFloat)inputBarHeight {

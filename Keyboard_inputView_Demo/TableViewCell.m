@@ -19,6 +19,7 @@
         
         _title = [[UILabel alloc] initWithFrame:CGRectZero];
         _title.translatesAutoresizingMaskIntoConstraints = false;
+        _title.font = [UIFont systemFontOfSize:14];
         _title.numberOfLines = 0;
         [self addSubview:_title];
         
@@ -35,6 +36,11 @@
         
     }
     return self;
+}
+
++ (CGFloat)height:(NSString *)count {
+    CGSize contentSize = [count boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 20, 0) options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14]} context:nil].size;
+    return contentSize.height + 20;
 }
 
 - (void)setCount:(NSString *)count {
